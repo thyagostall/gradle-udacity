@@ -1,0 +1,58 @@
+task groovy {
+	doLast {}
+}
+
+println " 1: --------------------"
+def foo = "One million dollars"
+def myClosure = {
+	println "Hello from a closure"
+	println "The value of foo is $foo"
+}
+
+def bar = myClosure
+def baz = bar
+baz()
+
+println " 2: --------------------"
+def doubleIt = {x -> x + x}
+
+def applyTwice(func, arg) {
+	func(func(arg))
+}
+
+foo = 5
+def fooDoubledTwice = applyTwice(doubleIt, foo)
+println "Applying doubleIt twice to $foo equals $fooDoubledTwice"
+
+println " 3: --------------------"
+
+def myList = ["Gradle", "Groovy", "Android"]
+
+def printItem = {item -> println "List item $item"}
+myList.each(printItem)
+
+println " 4: --------------------"
+myList.each({println "List item $it"})
+
+println " 5: --------------------"
+class GroovyGreeter {
+	String greeting = "Default greeting"
+	def printGreeting() {
+		println "Greeting: $greeting"
+	}
+}
+
+def myGroovyGreeter = new GroovyGreeter()
+myGroovyGreeter.printGreeting()
+myGroovyGreeter.greeting = "My custom greeting"
+myGroovyGreeter.printGreeting()
+
+println " 6: --------------------"
+
+def greetingClosure = {
+	greeting = "Setting the greeting from a closure"
+	printGreeting()
+}
+
+greetingClosure.delegate = myGroovyGreeter
+greetingClosure()
