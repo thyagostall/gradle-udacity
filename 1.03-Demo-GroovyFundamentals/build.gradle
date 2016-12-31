@@ -1,0 +1,58 @@
+task groovy {
+	doLast {}
+}
+
+println " 1: --------------------"
+println "Hello Groovy!"
+
+println " 2: --------------------"
+class JavaGreeter {
+	public void sayHello() {
+		System.out.println("Hello Java!");
+	}
+}
+
+JavaGreeter greeter = new JavaGreeter();
+greeter.sayHello();
+
+println " 3: --------------------"
+def foo = 6.5
+
+println "foo has value: $foo";
+
+println "Let's do some math. 5 + 6 = ${5 + 6}"
+
+println "foo is of type: ${foo.class} and has value: $foo"
+
+foo = "a string"
+println "foo is now of type: ${foo.class} and has value: $foo"
+
+println " 4: --------------------"
+
+def doubleIt(n) {
+	n + n
+}
+
+foo = 5
+println "doubleIt($foo) = ${doubleIt(foo)}"
+
+foo = "foobar"
+println "doubleIt($foo) = ${doubleIt(foo)}"
+
+println " 5: --------------------"
+
+def noArgs() {
+	println "No args"
+}
+
+def oneArg(x) {
+	println "x = $x"
+}
+
+def twoArgs(x, y) {
+	println "x = $x, y = $y"
+}
+
+oneArg 500
+twoArgs 200, 300
+twoArgs oneArg(500), 200
